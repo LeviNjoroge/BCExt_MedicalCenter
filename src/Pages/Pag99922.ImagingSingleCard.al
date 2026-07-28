@@ -52,7 +52,9 @@ page 99922 "Imaging Single Card"
     {
         area(Promoted)
         {
-
+            actionref(Upload; "Upload File") { }
+            actionref(Submit; "Submit Results") { }
+            actionref(Cancel; "Cancel Test") { }
         }
         area(Processing)
         {
@@ -70,6 +72,27 @@ page 99922 "Imaging Single Card"
                     end else begin
                         Message('SOmething went wrong, please try again later!');
                     end;
+                end;
+            }
+            action("Submit results")
+            {
+                Image = Completed;
+                trigger OnAction()
+                var
+                    BillingHelper: Codeunit "Billing Helper";
+                begin
+                    // bill the complete lab test, mark status as complete
+                    Rec.Status := Rec.Status::Complete;
+                    BillingHelper.BillImaging(Rec."Visit number", Rec."Requested Image");
+                    Message('Success!');
+                end;
+            }
+            action("Cancel Test")
+            {
+                image = CancelLine;
+                trigger OnAction()
+                begin
+                    Rec.Status := Rec.Status::Canceled;
                 end;
             }
         }

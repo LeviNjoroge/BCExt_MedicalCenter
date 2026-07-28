@@ -43,4 +43,22 @@ codeunit 99902 "Billing Helper"
             Message('Lab fee has already been recorded for this visit!');
         end;
     end;
+
+    procedure BillImaging(VisitNumber: Code[20]; ImageRequested: Code[20])
+    var
+        Bill: Record "Billing Lines";
+        Imaging
+    begin
+        LabTestsTable.Get(ImageRequested);
+        if not Bill.Get(VisitNumber, Bill.Type::Laboratory) and (Bill.Notes <> ImageRequested) then begin
+            Bill.Init();
+            Bill.Visit := VisitNumber;
+            Bill.Type := Bill.Type::Laboratory;
+            Bill.Amount := LabTestsTable.Cost;
+            Bill.Notes := ImageRequested;
+            Bill.Insert(true);
+        end else begin
+            Message('Lab fee has already been recorded for this visit!');
+        end;
+    end;
 }
