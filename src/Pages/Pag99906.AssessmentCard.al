@@ -59,18 +59,18 @@ page 99906 "Assessment Card"
                     Editable = false;
                 }
             }
-            field("Allergies?";hasAllergies)
-            {
-                ShowMandatory = true;
-            }
-            group("Allergies")
-            {
-                Visible = hasAllergies;
-                part(AllergiesPart; PatientsAllegiesListPart)
+            // field("Allergies?";hasAllergies)
+            // {
+            //     ShowMandatory = true;
+            // }
+            // group("Allergies")
+            // {
+            //     Visible = hasAllergies;
+            part(AllergiesPart; PatientsAllegiesListPart)
                 {
                     SubPageLink = Patient = field(Patient);
                 }
-            }
+            // }
             group("Nurse' Remarks")
             {
                 field("Triage Categorisation"; Rec."Triage Categorisation")
@@ -103,15 +103,21 @@ page 99906 "Assessment Card"
                 Image = Completed;
                 trigger OnAction()
                 var
-                    FileHelper: Codeunit FileHelper;
+                    ProcessesHelper: Codeunit "Processes Helper";
                 begin
-                    FileHelper.CompleteAssessment(Rec.Visit);
+                    if Rec."Triage Categorisation" = Rec."Triage Categorisation"::"Non-Urgent" then begin
+                        ProcessesHelper.CompleteAssessment_AwaitConsultation(Rec.Visit);
+                    end else if Rec."Triage Categorisation" = Rec."Triage Categorisation"::Expectant then begin
+                        ProcessesHelper.CompleteAssessment_Awaiting(Rec.Visit);
+                    end else begin
+                        ProcessesHelper.CompleteAssessment_UnderStabilisation(Rec.Visit);
+                    end;
                 end;
             }
         }
     }
 
-    var
-        hasAllergies: Boolean;
-    
+    // var
+    //     hasAllergies: Boolean;
+
 }

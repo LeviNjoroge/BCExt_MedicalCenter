@@ -4,21 +4,17 @@ enum 99903 "Triage Categories"
     value(0; "")
     {
     }
-    value(1; Resuscitative)
+    value(1; Emergent)
     {
-        Caption = 'Resuscitative/Immediate - Red';
-    }
-    value(2; Emergent)
-    {
-        Caption = 'Emergent - Orange';
+        Caption = 'Immediate (Resuscitation/Emergent) - Red';
     }
     value(3; Urgent)
     {
-        Caption = 'Urgent - Yellow';
+        Caption = 'Delayed (Urgent) - Yellow';
     }
-    value(4; "Less Urgent")
+    value(4; "Non-Urgent")
     {
-        Caption = 'Less Urgent - Green';
+        Caption = 'Minimal/Non-Urgent - Green';
     }
     value(5; Expectant)
     {

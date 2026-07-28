@@ -169,10 +169,10 @@ page 99903 "Patient File"
                 Image = New;
                 trigger OnAction()
                 var
-                    FileHelper: Codeunit FileHelper;
+                    ProcessesHelper: Codeunit "Processes Helper";
                     VisitTable: Record "Visit Table";
                 begin
-                    FileHelper.CreateNewVisit(Rec."Patient Number");
+                    ProcessesHelper.CreateNewVisit(Rec."Patient Number");
                     VisitTable.SetRange("Patient Number", Rec."Patient Number");
                     Run(Page::"Visit Card", VisitTable);
                     // Run(Page::"Visit Card");

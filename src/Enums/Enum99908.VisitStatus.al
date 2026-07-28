@@ -5,41 +5,50 @@ enum 99908 "Visit Status"
     value(0; Waiting)
     {
         Caption = 'Waiting';
-    // Waiting – Patient is waiting to be seen.
-}
-    value(1; Assessed)
-    {
-        Caption = 'Assessed';
-        // Assessed – Nurse has completed the assessment.
+        // Waiting – Patient is waiting to be seen.
+        // Trigger: Visit creation complete
     }
-    value(2; "In Consultation")
+    value(1; "Awaiting Consultation")
     {
-        Caption = 'In Consultation';
-        // In Consultation – Doctor is attending to the patient.
+        Caption = 'Awaiting Consultation';
+        // Awaiting Consultation – Nurse has completed the assessment.
+        // Trigger: Assessment complete, triage is low; noy urgent
+
+    }
+    value(2; "Being stabilised")
+    {
+        // In emergency care
+        // Trigger: Assessment complete, triage is high
     }
     value(3; "Under Treatment")
     {
         Caption = 'Under Treatment';
-        // Under Treatment – Procedures, pharmacy, lab, etc. are in progress.
+        // Under Treatment – Procedures are in progress, patient is admitted.
+        // Trigger: CO (Consultation) - Send for procedure, Admit patient
+        //          Emergency - 'Outcome::Admitted'
     }
     value(4; "Awaiting Results")
     {
         Caption = 'Awaiting Results';
         // Awaiting Results – Waiting for lab or radiology results before continuing.
+        // Trigger: CO (Consultation) - Send for results: Imaging or lab
     }
     value(5; "Awaiting Payment")
     {
         Caption = 'Awaiting Payment';
         // Awaiting Payment – Clinical work is complete billing is pending.
+        // Trigger: CO (Consultation) - "Complete treatment"
     }
     value(6; Completed)
     {
         Caption = 'Completed';
         // Completed – Visit has been finalized and the patient has left.
+        // Trigger: Accountant - Paid
     }
     value(7; Canceled)
     {
         Caption = 'Canceled';
         // Cancelled – Visit was cancelled before completion.
+        // Trigger - Any point
     }
 }
