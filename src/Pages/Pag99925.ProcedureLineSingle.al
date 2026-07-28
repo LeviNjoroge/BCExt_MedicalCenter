@@ -48,9 +48,12 @@ page 99925 "Procedure Line Single"
             {
                 image = Completed;
                 trigger OnAction()
+                var
+                    BillingHelper: Codeunit "Billing Helper";
                 begin
                     Rec.Status := Rec.Status::Completed;
-                    // bill the patient, update status on visit card
+                    BillingHelper.BillProcedure(Rec."Visit number", Rec."Procedure");
+                    Message('Success!');
                 end;
             }
             action("Cancel")

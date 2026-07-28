@@ -31,6 +31,11 @@ table 99900 Setup
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
+        field(6; "Consultations No. Series"; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            TableRelation = "No. Series";
+        }
 
         field(10; ConsultationFee; Integer)
         {

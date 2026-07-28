@@ -85,7 +85,6 @@ page 99906 "Assessment Card"
                     ShowMandatory = true;
                     ApplicationArea = All;
                 }
-                
             }
         }
     }

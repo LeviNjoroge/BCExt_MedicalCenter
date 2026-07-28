@@ -80,6 +80,7 @@ page 99922 "Imaging Single Card"
                 trigger OnAction()
                 var
                     BillingHelper: Codeunit "Billing Helper";
+
                 begin
                     // bill the complete lab test, mark status as complete
                     Rec.Status := Rec.Status::Complete;

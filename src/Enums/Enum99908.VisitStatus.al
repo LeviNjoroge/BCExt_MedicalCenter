@@ -13,7 +13,6 @@ enum 99908 "Visit Status"
         Caption = 'Awaiting Consultation';
         // Awaiting Consultation – Nurse has completed the assessment.
         // Trigger: Assessment complete, triage is low; noy urgent
-
     }
     value(2; "Being stabilised")
     {
@@ -38,6 +37,7 @@ enum 99908 "Visit Status"
         Caption = 'Awaiting Payment';
         // Awaiting Payment – Clinical work is complete billing is pending.
         // Trigger: CO (Consultation) - "Complete treatment"
+        //                            - "Refer patient"
     }
     value(6; Completed)
     {

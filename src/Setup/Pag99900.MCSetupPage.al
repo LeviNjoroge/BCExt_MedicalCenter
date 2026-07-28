@@ -27,6 +27,10 @@ page 99900 "Medical Center Setup Page"
                 {
                     ApplicationArea = All;
                 }
+                field("Consultations No. Series"; Rec."Consultations No. Series")
+                {
+                    ApplicationArea = All;
+                }
                 
             }
             group("Fees and Costs")
