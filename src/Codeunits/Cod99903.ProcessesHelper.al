@@ -1,12 +1,17 @@
 codeunit 99903 "Processes Helper"
 {
     procedure CreateNewVisit(Patient:Code[20])
+    var
+        PatientTable: Record "Patients Table";
+        SendNotification: Codeunit "Send Notifications";
     begin
         VisitTable.Init();
         VisitTable."Patient Number" := Patient;
         VisitTable.Time := Time;
         VisitTable.Status := "Visit Status"::Waiting;
         VisitTable.Insert(true);
+        PatientTable.Get(Patient);
+
     end;
 
     procedure CompleteAssessment_AwaitConsultation(VisitNo: Code[20])

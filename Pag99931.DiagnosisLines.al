@@ -1,10 +1,9 @@
-page 99927 "Prescription Lines"
+page 99931 "Diagnosis Lines"
 {
     ApplicationArea = All;
-    Caption = 'Prescription Lines';
+    Caption = 'Diagnosis Lines';
     PageType = ListPart;
-    SourceTable = "Prescriptions Lines";
-    CardPageId = "Presciption Card";
+    SourceTable = "Diagnosis Lines";
     
     layout
     {
@@ -20,17 +19,17 @@ page 99927 "Prescription Lines"
                 {
                     ToolTip = 'Specifies the value of the Line No field.', Comment = '%';
                 }
-                field(Presciption; Rec.Presciption)
+                field("Diagnosis Code"; Rec."Diagnosis Code")
                 {
-                    ToolTip = 'Specifies the value of the Presciption field.', Comment = '%';
+                    ToolTip = 'Specifies the value of the Diagnosis Code field.', Comment = '%';
+                }
+                field(Description; Rec.Description)
+                {
+                    ToolTip = 'Specifies the value of the Description field.', Comment = '%';
                 }
                 field(Notes; Rec.Notes)
                 {
                     ToolTip = 'Specifies the value of the Notes field.', Comment = '%';
-                }
-                field(Status; Rec.Status)
-                {
-                    ToolTip = 'Specifies the value of the Status field.', Comment = '%';
                 }
             }
         }

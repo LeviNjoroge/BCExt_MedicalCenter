@@ -111,6 +111,7 @@ page 99906 "Assessment Card"
                     end else begin
                         ProcessesHelper.CompleteAssessment_UnderStabilisation(Rec.Visit);
                     end;
+                    Run(Page::);
                 end;
             }
         }

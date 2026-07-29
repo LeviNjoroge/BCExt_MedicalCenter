@@ -7,7 +7,14 @@ codeunit 99901 "Send Notifications"
             true);
         Email.Send(EmailMessage);
     end;
-    
+
+    procedure WelcomePatientForVisit(PatientName: Text; EmailAddress: Text; VisitTime: Time; VisitNumber: Code[20])
+    begin
+        EmailMessage.Create(EmailAddress, 'Visit recorded!', StrSubstNo('Dear %1,<br>Your visit at %2 has been recorded.<br>Your Visit number is: %3</b>We look forward to providing you with excellent care:)<br>Sincerely,<br>The Corehealth Team.', PatientName, VisitTime, VisitNumber), true);
+        Email.Send(EmailMessage);
+    end;
+
+
     var
         Email: Codeunit Email;
         EmailMessage: Codeunit "Email Message";

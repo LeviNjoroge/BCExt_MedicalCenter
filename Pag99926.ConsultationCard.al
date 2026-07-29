@@ -70,7 +70,10 @@ page 99926 "Consultation Card"
             }
             group("Diagnosis")
             {
-                
+                part(Diag; "Diagnosis Lines")
+                {
+                    SubPageLink = "Consultation No" = field("Consultation Number");
+                }
             }
             group("Prescription")
             {
