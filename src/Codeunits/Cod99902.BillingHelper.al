@@ -79,4 +79,22 @@ codeunit 99902 "Billing Helper"
             Message('Procedure fee has already been recorded for this visit!');
         end;
     end;
+
+    procedure BillMedicine(VisitNumber: Code[20]; Med: Code[20])
+    var
+        Bill: Record "Billing Lines";
+        MedicinesTable: Record "Medicines Table";
+    begin
+        MedicinesTable.Get(Med);
+        if not Bill.Get(VisitNumber, Bill.Type::"Pharmacy") and (Bill.Notes <> Med) then begin
+            Bill.Init();
+            Bill.Visit := VisitNumber;
+            Bill.Type := Bill.Type::"Pharmacy";
+            Bill.Amount := MedicinesTable.Cost;
+            Bill.Notes := Med;
+            Bill.Insert(true);
+        end else begin
+            Message('Pharmacy fee has already been recorded for this visit!');
+        end;
+    end;
 }
