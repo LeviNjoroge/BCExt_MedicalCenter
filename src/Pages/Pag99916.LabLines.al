@@ -4,6 +4,7 @@ page 99916 "Lab Lines"
     Caption = 'Lab Lines';
     PageType = ListPart;
     SourceTable = "Laboratory test line table";
+    CardPageId = "Lab Test Single Card";
     
     layout
     {
@@ -13,9 +14,11 @@ page 99916 "Lab Lines"
             {
                 field("Visit no"; Rec."Visit no")
                 {
+                    Visible = false;
                 }
                 field("Lab line ID"; Rec."Lab line ID")
                 {
+                    Visible = false;
                 }
                 field("Lab Test"; Rec."Lab Test")
                 {

@@ -15,10 +15,12 @@ page 99924 "Procedure Lines"
                 field("Line Number"; Rec."Line Number")
                 {
                     ToolTip = 'Specifies the value of the Line Number field.', Comment = '%';
+                    Visible = false;
                 }
                 field("Visit Number"; Rec."Visit Number")
                 {
                     ToolTip = 'Specifies the value of the Visit Number field.', Comment = '%';
+                    Visible = false;
                 }
                 field("Procedure"; Rec."Procedure")
                 {

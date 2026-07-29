@@ -9,11 +9,15 @@ table 99911 "Laboratory test line table"
         {
             Caption = 'Visit no';
             TableRelation = "Visit Table";
+            Editable = false;
         }
         field(2; "Lab line ID"; Integer)
         {
             Caption = 'Lab line ID';
             AutoIncrement = true;
+            MinValue = 1;
+            Editable = false;
+
         }
         field(3; "Lab Test"; Code[20])
         {

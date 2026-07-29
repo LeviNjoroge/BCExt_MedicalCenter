@@ -9,10 +9,14 @@ table 99918 "Prescriptions Lines"
         {
             Caption = 'Consultation No';
             TableRelation = "Consultations Table";
+            Editable = false;
         }
         field(2; "Line No"; Integer)
         {
             Caption = 'Line No';
+            AutoIncrement = true;
+            MinValue = 1;
+            Editable = false;
         }
         field(3; Presciption; Code[20])
         {
@@ -30,13 +34,13 @@ table 99918 "Prescriptions Lines"
         }
         field(6; VisitNumber; Code[20])
         {
-            DataClassification = ToBeClassified;
-            TableRelation = "Consultations Table"."Visit Number" where("Consultation Number" = field("Consultation No"));
+            FieldClass = FlowField;
+            CalcFormula = lookup("Consultations Table"."Visit Number" where("Consultation Number" = field("Consultation No")));
         }
     }
     keys
     {
-        key(PK; "Consultation No")
+        key(PK; "Consultation No", "Line No")
         {
             Clustered = true;
         }

@@ -34,7 +34,7 @@ table 99905 "Assessments Table"
             Caption = 'Height [cm]';
             trigger OnValidate()
             begin
-                Message('BMI!');
+                Rec.Height := Rec.Height / 100;
                 Rec.BMI := Rec.Weight / (Rec.Height * Rec.Height);
             end;
         }

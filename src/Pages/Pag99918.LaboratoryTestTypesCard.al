@@ -4,6 +4,7 @@ page 99918 "Laboratory Test Types Card"
     Caption = 'Laboratory Test Types Card';
     PageType = Card;
     SourceTable = "Laboratory Tests";
+    UsageCategory = Administration;
     
     layout
     {

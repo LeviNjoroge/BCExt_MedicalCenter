@@ -8,6 +8,9 @@ table 99916 "Procedure Lines"
         field(1; "Line Number"; Integer)
         {
             Caption = 'Line Number';
+            AutoIncrement = true;
+            MinValue = 1;
+            Editable = false;
         }
         field(2; "Visit Number"; Code[20])
         {

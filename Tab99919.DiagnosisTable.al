@@ -12,6 +12,7 @@ table 99919 "Diagnosis Table"
         field(2; Diagnosis; Text[50])
         {
             Caption = 'Diagnosis';
+            TableRelation = "Diagnosis Table";
         }
         field(3; Description; Text[100])
         {
@@ -24,5 +25,10 @@ table 99919 "Diagnosis Table"
         {
             Clustered = true;
         }
+    }
+
+    fieldgroups
+    {
+        fieldgroup(DropDown; Code, Diagnosis, Description) { }
     }
 }

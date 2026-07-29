@@ -12,10 +12,14 @@ table 99920 "Diagnosis Lines"
         field(2; "Line No"; Integer)
         {
             Caption = 'Line No';
+            AutoIncrement = true;
+            MinValue = 1;
+            Editable = false;
         }
         field(3; "Diagnosis Code"; Code[20])
         {
             Caption = 'Diagnosis Code';
+            TableRelation = "Diagnosis Table";
         }
         field(4; Description; Text[100])
         {
@@ -28,7 +32,7 @@ table 99920 "Diagnosis Lines"
     }
     keys
     {
-        key(PK; "Consultation No")
+        key(PK; "Consultation No", "Line No")
         {
             Clustered = true;
         }

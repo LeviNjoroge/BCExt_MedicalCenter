@@ -24,7 +24,7 @@ table 99910 "Billing Lines"
     }
     keys
     {
-        key(PK; Visit, Type)
+        key(PK; Visit, Type, Notes)
         {
             Clustered = true;
         }

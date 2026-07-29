@@ -174,6 +174,7 @@ page 99903 "Patient File"
                 begin
                     ProcessesHelper.CreateNewVisit(Rec."Patient Number");
                     VisitTable.SetRange("Patient Number", Rec."Patient Number");
+                    VisitTable.FindLast();
                     Run(Page::"Visit Card", VisitTable);
                     // Run(Page::"Visit Card");
                 end;

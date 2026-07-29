@@ -76,6 +76,14 @@ page 99904 "Visit Card"
                 field("Amount Paid"; Rec."Amount Paid")
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    begin
+                        if Rec."Amount Paid" > Rec."Billed Amount" then begin
+                            Rec."Payment Status" := Rec."Payment Status"::"Partially Paid";
+                        end else begin
+
+                        end;
+                    end;
                 }
                 field(Balance; Rec.Balance)
                 {
@@ -110,6 +118,25 @@ page 99904 "Visit Card"
                     BillingHelper.BillConsultation(Rec."Visit Number");
                     
                     Run(Page::"Assessment Card");
+                end;
+            }
+            action("Generate Bill")
+            {
+                trigger OnAction()
+                begin
+                    Rec."Payment Status" := Rec."Payment Status"::Billed;
+                    Rec.Status := Rec.Status::"Awaiting Payment";
+                end;
+            }
+            action("Clear Patient")
+            {
+                trigger OnAction()
+                begin
+                    if Rec.Balance > 0 then begin
+                        Message('Patient should have NILL balance to be cleared!');
+                    end else begin
+
+                    end;
                 end;
             }
         }

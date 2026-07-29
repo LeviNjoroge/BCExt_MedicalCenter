@@ -11,7 +11,7 @@ codeunit 99903 "Processes Helper"
         VisitTable.Status := "Visit Status"::Waiting;
         VisitTable.Insert(true);
         PatientTable.Get(Patient);
-
+        SendNotification.WelcomePatientForVisit(PatientTable."Full Name", PatientTable.Email, Time, VisitTable."Visit Number");
     end;
 
     procedure CompleteAssessment_AwaitConsultation(VisitNo: Code[20])

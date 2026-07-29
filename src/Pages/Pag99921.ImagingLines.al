@@ -14,9 +14,11 @@ page 99921 "Imaging Lines"
             {
                 field("Line Number"; Rec."Line Number")
                 {
+                    Visible = false;
                 }
                 field("Visit number"; Rec."Visit number")
                 {
+                    Visible = false;
                 }
                 field("Requested Image"; Rec."Requested Image")
                 {

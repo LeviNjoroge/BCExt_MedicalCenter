@@ -15,7 +15,7 @@ codeunit 99902 "Billing Helper"
         SetUp: Record Setup;
     begin
         SetUp.Get();
-        if not Bill.Get(VisitNumber, Bill.Type::Consultation) then begin
+        if not Bill.Get(VisitNumber, Bill.Type::Consultation, '') then begin
             Bill.Init();
             Bill.Visit := VisitNumber;
             Bill.Type := Bill.Type::Consultation;
@@ -32,7 +32,7 @@ codeunit 99902 "Billing Helper"
         LabTestsTable : Record "Laboratory Tests";
     begin
         LabTestsTable.Get(LabTestID);
-        if not Bill.Get(VisitNumber, Bill.Type::Laboratory) and (Bill.Notes <> LabTestID) then begin
+        if not Bill.Get(VisitNumber, Bill.Type::Laboratory, LabTestID) then begin
             Bill.Init();
             Bill.Visit := VisitNumber;
             Bill.Type := Bill.Type::Laboratory;
@@ -50,7 +50,7 @@ codeunit 99902 "Billing Helper"
         RadiologyTable: Record "Radiology Imaging Catalogue";
     begin
         RadiologyTable.Get(ImageRequested);
-        if not Bill.Get(VisitNumber, Bill.Type::Radiology) and (Bill.Notes <> ImageRequested) then begin
+        if not Bill.Get(VisitNumber, Bill.Type::Radiology, ImageRequested) then begin
             Bill.Init();
             Bill.Visit := VisitNumber;
             Bill.Type := Bill.Type::Radiology;
@@ -68,7 +68,7 @@ codeunit 99902 "Billing Helper"
         ProcedureTable: Record "Procedures Table";
     begin
         ProcedureTable.Get(Proc);
-        if not Bill.Get(VisitNumber, Bill.Type::"Procedure") and (Bill.Notes <> Proc) then begin
+        if not Bill.Get(VisitNumber, Bill.Type::"Procedure", Proc) then begin
             Bill.Init();
             Bill.Visit := VisitNumber;
             Bill.Type := Bill.Type::"Procedure";
@@ -85,14 +85,17 @@ codeunit 99902 "Billing Helper"
         Bill: Record "Billing Lines";
         MedicinesTable: Record "Medicines Table";
     begin
+        Message('Procedure triggered');
         MedicinesTable.Get(Med);
-        if not Bill.Get(VisitNumber, Bill.Type::"Pharmacy") and (Bill.Notes <> Med) then begin
+        if not Bill.Get(VisitNumber, Bill.Type::"Pharmacy", Med) then begin
             Bill.Init();
+            Message('Insert Started!');
             Bill.Visit := VisitNumber;
             Bill.Type := Bill.Type::"Pharmacy";
             Bill.Amount := MedicinesTable.Cost;
             Bill.Notes := Med;
             Bill.Insert(true);
+            Message('Insert Complete!');
         end else begin
             Message('Pharmacy fee has already been recorded for this visit!');
         end;

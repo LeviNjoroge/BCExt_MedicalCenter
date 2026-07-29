@@ -11,16 +11,18 @@ table 99914 "Imaging Lines"
             Caption = 'Line Number';
             AutoIncrement = true;
             MinValue = 1;
+            Editable = false;
         }
         field(2; "Visit number"; Code[20])
         {
             Caption = 'Visit number';
             TableRelation = "Visit Table";
-
+            Editable = false;
         }
         field(3; "Requested Image"; Code[20])
         {
             Caption = 'Requested Image';
+            TableRelation = "Radiology Imaging Catalogue";
         }
         field(4; ResultLink; Text[256])
         {
@@ -51,7 +53,7 @@ table 99914 "Imaging Lines"
     }
     keys
     {
-        key(PK; "Line Number")
+        key(PK; "Line Number", "Visit number")
         {
             Clustered = true;
         }

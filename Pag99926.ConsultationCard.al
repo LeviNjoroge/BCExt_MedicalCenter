@@ -4,6 +4,7 @@ page 99926 "Consultation Card"
     Caption = 'Consultation Card';
     PageType = Card;
     SourceTable = "Consultations Table";
+    UsageCategory = Administration;
 
     layout
     {
@@ -14,6 +15,7 @@ page 99926 "Consultation Card"
                 field("Consultation Number"; Rec."Consultation Number")
                 {
                     ToolTip = 'Specifies the value of the Consultation Number field.', Comment = '%';
+                    Editable = false;
                 }
                 field("Visit Number"; Rec."Visit Number")
                 {

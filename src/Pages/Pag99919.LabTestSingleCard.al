@@ -4,6 +4,7 @@ page 99919 "Lab Test Single Card"
     Caption = 'Lab Test Single Card';
     PageType = Card;
     SourceTable = "Laboratory test line table";
+    UsageCategory = Administration;
     
     layout
     {

@@ -4,6 +4,7 @@ page 99928 "Presciption Card"
     Caption = 'Presciption Card';
     PageType = Card;
     SourceTable = "Prescriptions Lines";
+    UsageCategory = Administration;
     
     layout
     {
@@ -16,13 +17,19 @@ page 99928 "Presciption Card"
                 field("Consultation No"; Rec."Consultation No")
                 {
                     ToolTip = 'Specifies the value of the Consultation No field.', Comment = '%';
+                    Visible = false;
                 }
                 field("Line No"; Rec."Line No")
                 {
                     ToolTip = 'Specifies the value of the Line No field.', Comment = '%';
                 }
+
+            }
+            group("Prescription info")
+            {
                 field(Presciption; Rec.Presciption)
                 {
+                    Editable = false;
                     ToolTip = 'Specifies the value of the Presciption field.', Comment = '%';
                 }
                 field(Notes; Rec.Notes)
