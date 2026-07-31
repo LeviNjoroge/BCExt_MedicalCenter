@@ -44,16 +44,15 @@ page 99919 "Lab Test Single Card"
             }
             group("Lab results")
             {
-                field("Performed by"; Rec."Performed by")
+                field("Lab staff"; Rec."Performed by")
                 {
                     ToolTip = 'Specifies the value of the Performed by field.', Comment = '%';
                     ShowMandatory = true;
-                    
                 }
                 field(Results; Rec.Results)
                 {
                     ToolTip = 'Specifies the value of the Results field.', Comment = '%';
-                    ShowMandatory = true;
+                    ShowMandatory = Rec.Status = Rec.Status::Requested;
                 }
                 field(Notes; Rec.Notes)
                 {

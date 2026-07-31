@@ -95,7 +95,8 @@ codeunit 99902 "Billing Helper"
             Bill.Amount := MedicinesTable.Cost;
             Bill.Notes := Med;
             Bill.Insert(true);
-            Message('Insert Complete!');
+            Message('Bill info:\%1\%2\%3\%4', Bill.Visit, Bill.Type, Bill.Amount, Bill.Notes);
+            Message('The bill for %1 has been successfully recorded!', Med);
         end else begin
             Message('Pharmacy fee has already been recorded for this visit!');
         end;

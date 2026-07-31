@@ -46,7 +46,7 @@ page 99905 "Assessment ListPart"
                 field(BMI; Rec.BMI)
                 {
                     ApplicationArea = All;
-                    Editable = false;
+                    // Editable = false;
                 }
                 field("Pulse Rate"; Rec."Pulse Rate")
                 {

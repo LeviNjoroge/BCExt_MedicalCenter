@@ -104,6 +104,8 @@ page 99904 "Visit Card"
         area(Promoted)
         {
             actionref(Confirm; "Confirm Visit"){}
+            actionref(GenBill; "Generate Bill") { }
+            actionref(Clear; "Clear Patient") { }
         }
         area(Processing)
         {
@@ -122,6 +124,7 @@ page 99904 "Visit Card"
             }
             action("Generate Bill")
             {
+                Image =
                 trigger OnAction()
                 begin
                     Rec."Payment Status" := Rec."Payment Status"::Billed;

@@ -24,6 +24,9 @@ table 99920 "Diagnosis Lines"
         field(4; Description; Text[100])
         {
             Caption = 'Description';
+            FieldClass = FlowField;
+            CalcFormula = lookup("Diagnosis Table".Description where(Code = field("Diagnosis Code")));
+            Editable = false;
         }
         field(5; Notes; Text[100])
         {

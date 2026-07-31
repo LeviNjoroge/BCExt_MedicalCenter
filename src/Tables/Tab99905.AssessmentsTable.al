@@ -34,8 +34,8 @@ table 99905 "Assessments Table"
             Caption = 'Height [cm]';
             trigger OnValidate()
             begin
-                Rec.Height := Rec.Height / 100;
-                Rec.BMI := Rec.Weight / (Rec.Height * Rec.Height);
+                // Rec.Height := Rec.Height / 100;
+                Rec.BMI := (Rec.Weight / (Rec.Height * Rec.Height)) * 10000;
             end;
         }
         field(6; BMI; Decimal)

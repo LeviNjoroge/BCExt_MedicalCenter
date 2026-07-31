@@ -2,6 +2,8 @@ table 99909 "Visit Table"
 {
     Caption = 'Visit Table';
     DataClassification = ToBeClassified;
+    LookupPageId = "Visit List";
+    DrillDownPageId = "Visit List";
     
     fields
     {

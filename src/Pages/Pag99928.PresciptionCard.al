@@ -23,6 +23,10 @@ page 99928 "Presciption Card"
                 {
                     ToolTip = 'Specifies the value of the Line No field.', Comment = '%';
                 }
+                field(VisitNumber; Rec.VisitNumber)
+                {
+                    ApplicationArea = All;
+                }
 
             }
             group("Prescription info")

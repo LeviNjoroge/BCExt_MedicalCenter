@@ -1,0 +1,100 @@
+name: MedicalCentreMS BC Docker CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    env:
+      BC_CONTAINER_NAME: "${{ secrets.BC_CONTAINER_NAME }}"
+      BC_CONTAINER_TENANT: "${{ secrets.BC_TENANT }}"
+      BC_CONTAINER_USERNAME: "${{ secrets.BC_CONTAINER_USERNAME }}"
+      BC_CONTAINER_PASSWORD: "${{ secrets.BC_CONTAINER_PASSWORD }}"
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Install BcContainerHelper
+        shell: pwsh
+        run: |
+          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+          Install-Module BcContainerHelper -Scope CurrentUser -Force -AllowClobber
+
+      - name: Prepare app folders
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path "${{ github.workspace }}\.alpackages" | Out-Null
+          New-Item -ItemType Directory -Force -Path "${{ github.workspace }}\output" | Out-Null
+
+      - name: Compile AL Extension
+        shell: pwsh
+        run: |
+          Import-Module BcContainerHelper
+
+          $securePassword = ConvertTo-SecureString $env:BC_CONTAINER_PASSWORD -AsPlainText -Force
+          $credential = [System.Management.Automation.PSCredential]::new($env:BC_CONTAINER_USERNAME, $securePassword)
+
+          Compile-AppInBcContainer `
+            -containerName $env:BC_CONTAINER_NAME `
+            -appProjectFolder "${{ github.workspace }}" `
+            -appOutputFolder "${{ github.workspace }}\output" `
+            -appSymbolsFolder "${{ github.workspace }}\.alpackages" `
+            -credential $credential `
+            -UpdateSymbols
+
+          $compiledApp = Get-ChildItem -Path "${{ github.workspace }}\output" -Filter *.app | Select-Object -First 1
+
+          if (-not $compiledApp) {
+            throw "Compilation finished without producing an .app file."
+          }
+
+          Write-Host "Compilation successful: $($compiledApp.FullName)"
+
+      - name: Publish and Deploy to Docker BC
+        if: github.ref == 'refs/heads/main'
+        shell: pwsh
+        run: |
+          Import-Module BcContainerHelper
+
+          $securePassword = ConvertTo-SecureString $env:BC_CONTAINER_PASSWORD -AsPlainText -Force
+          $credential = [System.Management.Automation.PSCredential]::new($env:BC_CONTAINER_USERNAME, $securePassword)
+          $tenant = if ([string]::IsNullOrWhiteSpace($env:BC_CONTAINER_TENANT)) { 'default' } else { $env:BC_CONTAINER_TENANT }
+          $appFile = Get-ChildItem -Path "${{ github.workspace }}\output" -Filter *.app | Select-Object -First 1
+
+          if (-not $appFile) {
+            throw "No compiled .app file was found in the output folder."
+          }
+
+          Write-Host "Publishing $($appFile.Name) to container $($env:BC_CONTAINER_NAME)..."
+
+          try {
+            Publish-BcContainerApp `
+              -containerName $env:BC_CONTAINER_NAME `
+              -appFile $appFile.FullName `
+              -tenant $tenant `
+              -credential $credential `
+              -skipVerification `
+              -sync `
+              -install
+
+            Write-Host "Publish and install completed."
+          }
+          catch {
+            Write-Host "Install path failed, trying upgrade instead..."
+
+            Publish-BcContainerApp `
+              -containerName $env:BC_CONTAINER_NAME `
+              -appFile $appFile.FullName `
+              -tenant $tenant `
+              -credential $credential `
+              -skipVerification `
+              -sync `
+              -upgrade
+
+            Write-Host "Publish and upgrade completed."
+          }
