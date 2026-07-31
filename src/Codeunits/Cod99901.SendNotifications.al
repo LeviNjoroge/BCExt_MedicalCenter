@@ -24,7 +24,7 @@ codeunit 99901 "Send Notifications"
 
         Body :=
             StrSubstNo(
-                'Dear %1,<br/><br/>Thank you for visiting our medical centre. \Below is a summary of your bill.<br/><br/>',
+                'Dear %1,<br/><br/>Thank you for visiting our medical centre. <br>Below is a summary of your bill.<br/><br/>',
             Name);
 
         // Begin table
