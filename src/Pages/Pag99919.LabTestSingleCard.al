@@ -39,7 +39,7 @@ page 99919 "Lab Test Single Card"
                 field(Cost; Rec.Cost)
                 {
                     ToolTip = 'Specifies the value of the Cost field.', Comment = '%';
-                    Editable = false;
+                    // Editable = false;
                 }
             }
             group("Lab results")

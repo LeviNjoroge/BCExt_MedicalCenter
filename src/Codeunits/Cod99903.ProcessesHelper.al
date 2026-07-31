@@ -41,7 +41,17 @@ codeunit 99903 "Processes Helper"
         end;
     end;
 
-    // procedure CompletedLabTest()
+    procedure BillEmail(VisitNumber: Code[20])
+    var
+        SendNotififications: Codeunit "Send Notifications";
+        VisitTable: Record "Visit Table"; // to get the patient id
+        Patient: Record "Patients Table";   // to get the email address
+    begin
+        VisitTable.Get(VisitNumber);
+        Patient.Get(VisitTable."Patient Number");
+        SendNotififications.SendBillingEmail(Patient."Full Name", Patient.Email, VisitNumber);
+        Message('Email sent successfully!');
+    end;
 
     var
         VisitTable: Record "Visit Table";

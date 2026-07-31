@@ -111,7 +111,7 @@ page 99904 "Visit Card"
         {
             action("Confirm visit")
             {
-                Image = Completed;
+                Image = Confirm;
                 Caption = 'Send for assessment';
                 trigger OnAction()
                 var
@@ -124,21 +124,25 @@ page 99904 "Visit Card"
             }
             action("Generate Bill")
             {
-                Image =
+                Image = VendorBill;
                 trigger OnAction()
+                var
+                    ProcessHelper: Codeunit "Processes Helper";
                 begin
                     Rec."Payment Status" := Rec."Payment Status"::Billed;
                     Rec.Status := Rec.Status::"Awaiting Payment";
+                    ProcessHelper.BillEmail(Rec."Visit Number");
                 end;
             }
             action("Clear Patient")
             {
+                image = Completed;
                 trigger OnAction()
                 begin
                     if Rec.Balance > 0 then begin
                         Message('Patient should have NILL balance to be cleared!');
                     end else begin
-
+                        // Rec.
                     end;
                 end;
             }

@@ -82,7 +82,7 @@ Recommended initial setup steps:
 Typical operational flow:
 
 1. Open [Patients Registration Card](src/Pages/Pag99901.PatientsRegistrationCard.al) and capture the patient application details.
-2. Use the submit action to create the patient record in [Patients Table](src/Tables/Tab99902.PatientsTable.al) and send the welcome email.
+2. Use the submit action to create the patient record in [Patients Table](src/Tables/Tab99902.PatientsTable.al) and send the the system sends the welcome email.
 3. Create a visit from the patient record or visit page and let the system assign the next visit number.
 4. Move the visit through assessment and consultation using [Visit Card](src/Pages/Pag99904.VisitCard.al) and the assessment/consultation pages.
 5. Add charges through billing lines for consultation, laboratory, imaging, procedure, or pharmacy items.
