@@ -110,10 +110,12 @@ page 99906 "Assessment Card"
                 begin
                     if Rec."Triage Categorisation" = Rec."Triage Categorisation"::"Non-Urgent" then begin
                         ProcessesHelper.CompleteAssessment_AwaitConsultation(Rec.Visit);
+                        Run(Page::"Consultation Card");
                     end else if Rec."Triage Categorisation" = Rec."Triage Categorisation"::Expectant then begin
                         ProcessesHelper.CompleteAssessment_Awaiting(Rec.Visit);
                     end else begin
                         ProcessesHelper.CompleteAssessment_UnderStabilisation(Rec.Visit);
+                        Run(Page::"Emergency Case Card");
                     end;
                     // Run(Page::"Consultation Card");
                 end;

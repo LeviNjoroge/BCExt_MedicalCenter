@@ -24,7 +24,8 @@ table 99922 "Stabilisation Lines"
         field(4; "Unit cost"; Integer)
         {
             Caption = 'Unit cost';
-            TableRelation = "Stabilisation Procedures"."Unit Cost" where(Code = field("Stabilisation code"));
+            FieldClass = FlowField;
+            CalcFormula = lookup("Stabilisation Procedures"."Unit Cost" where(Code = field("Stabilisation code")));
         }
         field(5; Units; Integer)
         {

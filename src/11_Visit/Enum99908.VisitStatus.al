@@ -14,7 +14,7 @@ enum 99908 "Visit Status"
         // Awaiting Consultation – Nurse has completed the assessment.
         // Trigger: Assessment complete, triage is low; noy urgent
     }
-    value(2; "Being stabilised")
+    value(2; "Under Stabilisation")
     {
         // In emergency care
         // Trigger: Assessment complete, triage is high

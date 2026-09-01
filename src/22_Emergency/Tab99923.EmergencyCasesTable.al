@@ -13,6 +13,14 @@ table 99923 "Emergency Cases Table"
         {
             Caption = 'Visit Number';
             TableRelation = "Visit Table";
+
+        }
+        field(12; "Patient Number"; Code[20])
+        {
+            Editable = false;
+            Caption = 'Patient Number';
+            FieldClass = FlowField;
+            CalcFormula = lookup("Visit Table"."Patient Number" where("Visit Number" = field("Visit Number")));
         }
         field(11; Date; Date)
         {
@@ -29,12 +37,16 @@ table 99923 "Emergency Cases Table"
         field(5; "Assigned Doctor"; Code[20])
         {
             Caption = 'Assigned Doctor';
-            TableRelation = "CoreHealth Staff".Role where(Role = const('CO'));
+            TableRelation = "CoreHealth Staff" where(Role = const('CO'));
         }
         field(6; "Assigned Nurse"; Code[20])
         {
             Caption = 'Assigned Nurse';
-            TableRelation = "CoreHealth Staff".Role where(Role = const('ER'));
+            TableRelation = "CoreHealth Staff" where(Role = const('ER'));
+            trigger OnValidate()
+            begin
+                Rec.Status := Rec.Status::"Under Stabilisation";
+            end;
         }
         field(7; Status; Enum "Stabilisation Status")
         {

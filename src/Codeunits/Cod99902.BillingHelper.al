@@ -27,6 +27,25 @@ codeunit 99902 "Billing Helper"
         end;
     end;
 
+    procedure BillEmergencyCare(VisitNumber: Code[20]; EmergencyCode: Code[20]; Amount: Integer)
+    var
+        Bill: Record "Billing Lines";
+        SetUp: Record Setup;
+    begin
+        SetUp.Get();
+        if not Bill.Get(VisitNumber, Bill.Type::"Emergency Care", EmergencyCode) then begin
+            Bill.Init();
+            Bill.Visit := VisitNumber;
+            Bill.Type := Bill.Type::"Emergency Care";
+            Bill.Notes := EmergencyCode;
+            Bill.Amount := Amount;
+            Bill.Insert(true);
+            Message('Success!');
+        end else begin
+            Message('Emergency care fee has already been recorded for this visit!');
+        end;
+    end;
+
     procedure BillLabTest(VisitNumber: Code[20]; LabTestID: Code[20])
     var
         Bill: Record "Billing Lines";

@@ -30,7 +30,7 @@ codeunit 99903 "Processes Helper"
     procedure CompleteAssessment_UnderStabilisation(VisitNo: Code[20])
     begin
         if VisitTable.Get(VisitNo) then begin
-            VisitTable.Status := "Visit Status"::"Awaiting Consultation";
+            VisitTable.Status := "Visit Status"::"Under Stabilisation";
             VisitTable.Modify();
             Message('Assessment recorded successfully!\Patient taken for emergency care and stabilisation');
         end;
@@ -41,7 +41,7 @@ codeunit 99903 "Processes Helper"
         if VisitTable.Get(VisitNo) then begin
             VisitTable.Status := "Visit Status"::Waiting;
             VisitTable.Modify();
-            Message('Assessment recorded successfully!\Patient is waiting for further direction');
+            Message('Assessment recorded successfully!\Patient is in waiting.');
         end;
     end;
 

@@ -1,7 +1,7 @@
-page 99937 "Stabilisation Lines ListPart"
+page 99937 "Stabilisation Lines"
 {
     ApplicationArea = All;
-    Caption = 'Stabilisation Lines ListPart';
+    Caption = 'Stabilisation Lines';
     PageType = ListPart;
     SourceTable = "Stabilisation Lines";
     
@@ -13,18 +13,22 @@ page 99937 "Stabilisation Lines ListPart"
             {
                 field("Emergency Number"; Rec."Emergency Number")
                 {
+                    Editable = false;
+
                     ToolTip = 'Specifies the value of the Emergency Number field.', Comment = '%';
                 }
                 field("Line Number"; Rec."Line Number")
                 {
+                    Editable = false;
                     ToolTip = 'Specifies the value of the Line Number field.', Comment = '%';
                 }
-                field("Stabilisation code"; Rec."Stabilisation code")
+                field("Stabilisation Prodecure"; Rec."Stabilisation code")
                 {
                     ToolTip = 'Specifies the value of the Stabilisation code field.', Comment = '%';
                 }
                 field("Unit cost"; Rec."Unit cost")
                 {
+                    Editable = false;
                     ToolTip = 'Specifies the value of the Unit cost field.', Comment = '%';
                 }
                 field(Units; Rec.Units)
@@ -44,6 +48,14 @@ page 99937 "Stabilisation Lines ListPart"
                     ToolTip = 'Specifies the value of the Notes field.', Comment = '%';
                 }
             }
+        }
+    }
+
+    actions
+    {
+        area(Processing)
+        {
+
         }
     }
 }
