@@ -31,6 +31,10 @@ page 99900 "Medical Center Setup Page"
                 {
                     ApplicationArea = All;
                 }
+                field("Emergency Care No. Series"; Rec."Emergency Care No. Series")
+                {
+                    ApplicationArea = All;
+                }
                 
             }
             group("Fees and Costs")
