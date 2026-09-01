@@ -118,8 +118,8 @@ page 99904 "Visit Card"
                     BillingHelper: Codeunit "Billing Helper";
                 begin
                     BillingHelper.BillConsultation(Rec."Visit Number");
-                    
-                    Run(Page::"Assessment Card");
+
+                    // Run(Page::"Assessment Card");
                 end;
             }
             action("Generate Bill")
@@ -142,7 +142,9 @@ page 99904 "Visit Card"
                     if Rec.Balance > 0 then begin
                         Message('Patient should have NILL balance to be cleared!');
                     end else begin
-                        // Rec.
+                        Rec.Status := Rec.Status::Completed;
+                        Rec."Payment Status" := Rec."Payment Status"::Paid;
+                        Message('Patient is cleared!');
                     end;
                 end;
             }

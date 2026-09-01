@@ -2,6 +2,7 @@ table 99916 "Procedure Lines"
 {
     Caption = 'Procedure Lines';
     DataClassification = ToBeClassified;
+    LookupPageId = "Procedures List";
     
     fields
     {

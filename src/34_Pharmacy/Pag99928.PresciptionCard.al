@@ -5,6 +5,7 @@ page 99928 "Presciption Card"
     PageType = Card;
     SourceTable = "Prescriptions Lines";
     UsageCategory = Administration;
+    // Pharmacist uses this page to see what drugs to give
     
     layout
     {

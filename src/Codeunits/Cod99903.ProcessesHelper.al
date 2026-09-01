@@ -5,13 +5,17 @@ codeunit 99903 "Processes Helper"
         PatientTable: Record "Patients Table";
         SendNotification: Codeunit "Send Notifications";
     begin
-        VisitTable.Init();
-        VisitTable."Patient Number" := Patient;
-        VisitTable.Time := Time;
-        VisitTable.Status := "Visit Status"::Waiting;
-        VisitTable.Insert(true);
-        PatientTable.Get(Patient);
-        SendNotification.WelcomePatientForVisit(PatientTable."Full Name", PatientTable.Email, Time, VisitTable."Visit Number");
+        if HasIncompleteVisit(Patient) then begin
+            Message('Could not create visit!\The patient has an incomplete visit.');
+        end else begin
+            VisitTable.Init();
+            VisitTable."Patient Number" := Patient;
+            VisitTable.Time := Time;
+            VisitTable.Status := "Visit Status"::Waiting;
+            VisitTable.Insert(true);
+            PatientTable.Get(Patient);
+            // SendNotification.WelcomePatientForVisit(PatientTable."Full Name", PatientTable.Email, Time, VisitTable."Visit Number");
+        end;
     end;
 
     procedure CompleteAssessment_AwaitConsultation(VisitNo: Code[20])
@@ -51,6 +55,15 @@ codeunit 99903 "Processes Helper"
         Patient.Get(VisitTable."Patient Number");
         SendNotififications.SendBillingEmail(Patient."Full Name", Patient.Email, VisitNumber);
         Message('Email sent successfully!');
+    end;
+
+    local procedure HasIncompleteVisit(PatientNumber: Code[20]): Boolean
+    var
+        myInt: Integer;
+    begin
+        VisitTable.SetRange("Patient Number", PatientNumber);
+        VisitTable.SetFilter(Status, '<>%1&<>%2', VisitTable.Status::Canceled, VisitTable.Status::Completed);
+        exit(not VisitTable.IsEmpty());
     end;
 
     var

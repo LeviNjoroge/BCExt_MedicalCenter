@@ -4,6 +4,8 @@ page 99925 "Procedure Line Single"
     Caption = 'Procedure Line Single';
     PageType = Card;
     SourceTable = "Procedure Lines";
+    UsageCategory = Administration;
+    // Imaging official accesses this page to see whats required
     
     layout
     {

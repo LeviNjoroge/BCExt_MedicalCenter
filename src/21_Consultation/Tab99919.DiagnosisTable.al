@@ -2,6 +2,7 @@ table 99919 "Diagnosis Table"
 {
     Caption = 'Diagnosis Table';
     DataClassification = ToBeClassified;
+    LookupPageId = "Diagnosis List";
     
     fields
     {

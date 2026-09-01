@@ -13,7 +13,7 @@ page 99913 BillingLines
             {
                 field(Visit; Rec.Visit)
                 {
-                    // Visible = false;
+                    Visible = false;
                     Editable = false;
                 }
                 field("Type"; Rec."Type")

@@ -4,6 +4,7 @@ page 99922 "Imaging Single Card"
     Caption = 'Imaging Single Card';
     PageType = Card;
     SourceTable = "Imaging Lines";
+    UsageCategory = Administration;
     
     layout
     {
@@ -37,10 +38,10 @@ page 99922 "Imaging Single Card"
                 {
                     ToolTip = 'Specifies the value of the Status field.', Comment = '%';
                 }
-                field("Requested by"; Rec."Requested by")
-                {
-                    ToolTip = 'Specifies the value of the Requested by field.', Comment = '%';
-                }
+                // field("Requested by"; Rec."Requested by")
+                // {
+                //     ToolTip = 'Specifies the value of the Requested by field.', Comment = '%';
+                // }
                 field("Performed by"; Rec."Performed by")
                 {
                     ToolTip = 'Specifies the value of the Performed by field.', Comment = '%';

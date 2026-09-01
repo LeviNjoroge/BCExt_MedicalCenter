@@ -40,11 +40,11 @@ table 99914 "Imaging Lines"
             Caption = 'Status';
             OptionMembers = "Waiting", "Complete", "Canceled";
         }
-        field(7; "Requested by"; Code[20])
-        {
-            Caption = 'Requested by';
-            // TableRelation = "CoreHealth Staff".StaffNo where(Role = filter(''));
-        }
+        // field(7; "Requested by"; Code[20])
+        // {
+        //     Caption = 'Requested by';
+        //     // TableRelation = "CoreHealth Staff".StaffNo where(Role = filter(''));
+        // }
         field(8; "Performed by"; Code[20])
         {
             Caption = 'Performed by';

@@ -101,6 +101,7 @@ page 99926 "Consultation Card"
                 actionref("Refer"; "Refer Patient") { }
                 actionref("Complete"; "Complete Consultation") { }
             }
+            actionref(Update; Refresh) { }
         }
 
         area(Processing)
@@ -185,6 +186,14 @@ page 99926 "Consultation Card"
                     VisitTable.Get(Rec."Visit Number");
                     VisitTable.Status := VisitTable.Status::"Awaiting Payment";
                     VisitTable.Modify(true);
+                end;
+            }
+            action(Refresh)
+            {
+                Image = Refresh;
+                trigger OnAction()
+                begin
+                    Update();
                 end;
             }
         }

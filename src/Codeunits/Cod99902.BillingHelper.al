@@ -21,6 +21,7 @@ codeunit 99902 "Billing Helper"
             Bill.Type := Bill.Type::Consultation;
             Bill.Amount := SetUp.ConsultationFee;
             Bill.Insert(true);
+            Message('Success!');
         end else begin
             Message('Consultation fee has already been recorded for this visit!');
         end;

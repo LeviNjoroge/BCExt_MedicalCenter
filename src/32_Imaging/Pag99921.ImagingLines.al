@@ -32,9 +32,6 @@ page 99921 "Imaging Lines"
                 field(Status; Rec.Status)
                 {
                 }
-                field("Requested by"; Rec."Requested by")
-                {
-                }
                 field("Performed by"; Rec."Performed by")
                 {
                 }

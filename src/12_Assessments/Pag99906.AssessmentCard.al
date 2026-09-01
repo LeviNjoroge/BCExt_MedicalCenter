@@ -5,7 +5,7 @@ page 99906 "Assessment Card"
     PageType = Card;
     SourceTable = "Assessments Table";
     UsageCategory = Administration;
-    
+
     layout
     {
         area(Content)
@@ -13,7 +13,7 @@ page 99906 "Assessment Card"
             group(General)
             {
                 Caption = 'General';
-                
+
                 field(AssessmentNo; Rec.AssessmentNo)
                 {
                     ApplicationArea = All;
@@ -29,7 +29,7 @@ page 99906 "Assessment Card"
                     ApplicationArea = All;
                     Editable = false;
                 }
-                
+
             }
             group("Vitals")
             {
@@ -67,9 +67,9 @@ page 99906 "Assessment Card"
             // {
             //     Visible = hasAllergies;
             part(AllergiesPart; PatientsAllegiesListPart)
-                {
-                    SubPageLink = Patient = field(Patient);
-                }
+            {
+                SubPageLink = Patient = field(Patient);
+            }
             // }
             group("Nurse' Remarks")
             {
@@ -93,7 +93,11 @@ page 99906 "Assessment Card"
     {
         area(Promoted)
         {
-            actionref(Submit; "Submit Assessment"){}
+            actionref(Submit; "Submit Assessment") { }
+            actionref(Update; Refresh)
+            {
+
+            }
         }
         area(Processing)
         {
@@ -111,7 +115,15 @@ page 99906 "Assessment Card"
                     end else begin
                         ProcessesHelper.CompleteAssessment_UnderStabilisation(Rec.Visit);
                     end;
-                    Run(Page::"Consultation Card");
+                    // Run(Page::"Consultation Card");
+                end;
+            }
+            action(Refresh)
+            {
+                Image = Refresh;
+                trigger OnAction()
+                begin
+                    Update();
                 end;
             }
         }
