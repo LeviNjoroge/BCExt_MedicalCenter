@@ -113,7 +113,7 @@ page 99939 "Emergency Case Card"
                 begin
                     Rec.Status := Rec.Status::Stable;
                     BillingHelper.BillEmergencyCare(Rec."Visit Number", Rec."Emergency Number", Rec.Amount);
-                    Message('Success!');
+                    Message('Stabilisation complete!\Patient should proceed to the doctor for consultation.');
                 end;
             }
             action("Cancel")
